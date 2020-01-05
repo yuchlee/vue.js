@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>hide</title>
+</head>
+<body>
+	<div id="app1">
+		<p v-if="show">这是一段文档</p>
+		<button v-on:click="handleClose">{{btnLabel}}</button>
+	</div>
+
+	<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+	<script type="text/javascript">
+		var app1 = new Vue({
+			el: "#app1",
+			data: {
+				show: true,
+				btnLabel: '点击隐藏文档'
+			},
+			methods: {
+				handleClose: function(){
+					this.show = !this.show;
+					if(this.show){
+						this.btnLabel = '点击隐藏文档';
+					}else{
+						this.btnLabel = '点击展示文档';
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>
