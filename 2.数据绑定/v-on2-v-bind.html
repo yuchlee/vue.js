@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>hide</title>
+</head>
+<body>
+	<div id="app1">
+		<!-- 注意下方代码中url变量，在标签中不加双大括号,即用url,而不是{{url}} -->
+		<a v-bind:href="url">前往未知页面的链接</a>
+		<!-- <a :href="url">前往未知页面的链接</a>  :bind是语法糖 -->
+		<button v-on:click="randomPage">随机一下</button>
+		<!-- <button @click="randomPage">随机一下</button>  @click是语法糖 -->
+	</div>
+
+	<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+	<script type="text/javascript">
+		var app1 = new Vue({
+			el: "#app1",
+			data: {
+				list: ['https://www.baidu.com','https://v.qq.com','https://github.com/yuchlee/vue.js','https://cnki.net','https://www.jd.com'],
+				url: ''
+			},
+			methods: {
+				randomPage: function(){
+					var index = Math.floor(Math.random()*5);
+					this.url = this.list[index];
+				}
+			}
+		})
+	</script>
+</body>
+</html>
