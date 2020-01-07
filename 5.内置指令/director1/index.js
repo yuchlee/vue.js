@@ -23,18 +23,14 @@ var app = new Vue({
 				count: 1,
 				state: false
 			}
-		],
-		allChecked: false,
-		checkList: []
+		]
 	},
 	computed: {
 		totalPrice: function(){
 			var total = 0;
 			for (var i = 0; i < this.list.length; i++) {
 				var item = this.list[i];
-				if(item.state){
-					total += item.price * item.count;
-				}
+				total += item.price * item.count;
 			}
 			return total.toString().replace(/\B(?=(\d{3})+$)/g,',');
 		}
@@ -49,21 +45,6 @@ var app = new Vue({
 		},
 		handleRemove: function(index){
 			this.list.splice(index,1);
-		},
-		checkedOne:function(one){
-			one.state = !one.state;
-		},
-		checkedAll: function(){
-			this.allChecked = !this.allChecked;
-			var _this = this;
-			if (this.allChecked) {
-                this.checkList = [];
-                this.list.forEach(function(item, index) {
-                    _this.checkList.push(item.id);
-                });
-            }else{
-            	this.checkList = [];
-            }
 		}
 	}
 });
