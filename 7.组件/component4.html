@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.container{
+			width: 400px;
+			position: relative;
+			float: left;
+			padding: 0;
+			text-align: center;
+		}
+		.left{
+			width: 20%;
+			position: relative;
+			float: left;
+		}
+		.middle{
+			width: 60%;
+			position: relative;
+			float: left;
+		}
+		.middle p{
+			display: inline-block;
+			width: 25%;
+			position: relative;
+			float: left;
+		}
+		.right{
+			width: 20%;
+			position: relative;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<child-component>
+			<div slot="left">左侧</div>
+			<div slot="middle">
+				<span>商品</span>
+				<span>评价</span>
+				<span>详情</span>
+				<span>推荐</span>
+			</div>
+			<div slot="right">右侧</div>
+		</child-component>
+	</div>
+	<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+	<script type="text/javascript">
+		Vue.component('child-component', {
+			template: `
+			<div class="container">
+				<div class="left">
+					<slot name="left"></slot>
+				</div>
+				<div class="middle">
+					<slot name="middle">
+						<slot></slot>
+					</slot>
+				</div>
+				<div class="right">
+					<slot name="right"></slot>
+				</div>
+			</div>`
+		});
+		var app = new Vue({
+			el: "#app"
+		})
+	</script>
+</body>
+</html>

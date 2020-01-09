@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<p>总数： {{ total }}</p>
+		<my-component v-model="total"></my-component>
+		<button @click="handleReduce">-1</button>
+		<button @click="handleIncrease">+1</button>
+	</div>
+	<!-- <div id="app">
+		<p>总数： {{ total }}</p>
+		<add-component v-model="total" @increase="handleGetTotal"></add-component>
+		<reduce-component v-model="total" @reduce="handleGetTotal"></reduce-component>
+	</div> -->
+	<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+	<script type="text/javascript">
+		Vue.component('my-component',{
+			props:['value'],
+			template: '<input :value="value" @input="updateValue">',
+			methods: {
+				updateValue: function(event){
+					this.$emit('input', event.target.value); 
+				}
+			}
+		});
+		var app = new Vue({
+			el: "#app",
+			data: {
+				total: 0
+			},
+			methods: {
+				handleReduce: function(){
+					this.total--;
+				},
+				handleIncrease: function(){ 
+					this.total++;
+				}
+			}
+		})
+		// Vue.component('add-component',{
+		// 	template: '<div><button @click="handleIncrease">+1</button>',
+		// 	data: function(){
+		// 		return {
+		// 			counter: 0
+		// 		}
+		// 	},
+		// 	methods:{
+		// 		handleIncrease: function(){
+		// 			this.counter++;
+		// 			console.log("increase--  "+this.counter);
+		// 			this.$emit('increase', this.counter);
+		// 		}
+		// 	}
+		// });
+		// Vue.component('reduce-component',{
+		// 	template: '<div><button @click="handleReduce">-1</button>',
+		// 	data: function(){
+		// 		return {
+		// 			counter: 0
+		// 		}
+		// 	},
+		// 	methods:{
+		// 		handleReduce: function(){
+		// 			this.counter--;
+		// 			console.log("reduce--  "+this.counter);
+		// 			this.$emit('reduce', this.counter);
+		// 		}
+		// 	}
+		// });
+		// var app = new Vue({
+		// 	el: '#app',
+		// 	data: {
+		// 		total: 0
+		// 	},
+		// 	methods: {
+		// 		handleGetTotal: function(total){
+		// 			console.log("total--  "+total);
+		// 			this.total = total;
+		// 		}
+		// 	}
+		// })
+	</script>
+</body>
+</html>
